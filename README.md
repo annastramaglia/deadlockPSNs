@@ -1,6 +1,8 @@
 # deadlockPSNs
 Investigation of Global, Local and Weak Deadlock for examples of Packet Switching Networks using different tools.
-PSN: an artificial format mimicking sending, processing and receiving messages in networks as it appears in practice.
+
+PSN: an artificial format mimicking sending, processing and receiving messages in networks as it appears in practice. Composed by a number
+of nodes and a number of channels. The main nodes are the only ones that can send and receive messages, the others can only process them.
 
 # nuXmv-NuSmv-z3
 file names: tool+numberOfNodes+(typeOfDeadlock||typeOfTechnique)
