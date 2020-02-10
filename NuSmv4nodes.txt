@@ -1,0 +1,41 @@
+MODULE main
+VAR
+C1 : 0..4;
+C2 : 0..4;
+C3 : 0..4;
+C4 : 0..4;
+INIT
+C1 = 0 & C2 = 0 & C3 = 0 & C4 = 0 
+TRANS
+case C1 = 0 : next(C1) = 2 & next(C2) = C2 & next(C3) = C3 & next(C4) = C4;
+TRUE : next(C1) = C1 & next(C2) = C2 & next(C3) = C3 & next(C4) = C4; esac |
+case C1 = 0 : next(C1) = 3 & next(C2) = C2 & next(C3) = C3 & next(C4) = C4;
+TRUE : next(C1) = C1 & next(C2) = C2 & next(C3) = C3 & next(C4) = C4; esac |
+case C2 = 0 : next(C2) = 1 & next(C1) = C1 & next(C3) = C3 & next(C4) = C4;
+TRUE : next(C2) = C2 & next(C1) = C1 & next(C3) = C3 & next(C4) = C4; esac |
+case C2 = 0 : next(C2) = 3 & next(C1) = C1 & next(C3) = C3 & next(C4) = C4;
+TRUE : next(C2) = C2 & next(C1) = C1 & next(C3) = C3 & next(C4) = C4; esac |
+case C3 = 0 : next(C3) = 1 & next(C1) = C1 & next(C2) = C2 & next(C4) = C4;
+TRUE : next(C3) = C3 & next(C1) = C1 & next(C2) = C2 & next(C4) = C4; esac |
+case C3 = 0 : next(C3) = 2 & next(C1) = C1 & next(C2) = C2 & next(C4) = C4;
+TRUE : next(C3) = C3 & next(C1) = C1 & next(C2) = C2 & next(C4) = C4; esac |
+
+case C1 = 3 & C2 = 0 : next(C1) = 0 & next(C2) = 3 & next(C3) = C3 & next(C4) = C4;
+TRUE : next(C1) = C1 & next(C2) = C2 & next(C3) = C3 & next(C4) = C4; esac |
+case C2 = 1 & C3 = 0 : next(C2) = 0 & next(C3) = 1 & next(C1) = C1 & next(C4) = C4;
+TRUE : next(C2) = C2 & next(C1) = C1 & next(C3) = C3 & next(C4) = C4; esac |
+case C3 = 1 & C4 = 0 : next(C3) = 0 & next(C4) = 1 & next(C1) = C1 & next(C2) = C2;
+TRUE : next(C3) = C3 & next(C1) = C1 & next(C2) = C2 & next(C4) = C4; esac |
+case C3 = 2 & C4 = 0 : next(C3) = 0 & next(C4) = 2 & next(C1) = C1 & next(C2) = C2;
+TRUE : next(C3) = C3 & next(C1) = C1 & next(C2) = C2 & next(C4) = C4; esac |
+case C4 = 2 & C1 = 0 : next(C4) = 0 & next(C1) = 2 & next(C2) = C2 & next(C3) = C3;
+TRUE : next(C4) = C4 & next(C1) = C1 & next(C2) = C2 & next(C3) = C3; esac |
+
+case C4 = 1 : next(C4) = 0 & next(C1) = C1 & next(C2) = C2 & next(C3) = C3;
+TRUE : next(C4) = C4 & next(C1) = C1 & next(C2) = C2 & next(C3) = C3; esac |
+case C1 = 2 : next(C1) = 0 & next(C2) = C2 & next(C3) = C3 & next(C4) = C4;
+TRUE : next(C1) = C1 & next(C2) = C2 & next(C3) = C3 & next(C4) = C4; esac |
+case C2 = 3 : next(C2) = 0 & next(C1) = C1 & next(C3) = C3 & next(C4) = C4;
+TRUE : next(C2) = C2 & next(C1) = C1 & next(C3) = C3 & next(C4) = C4; esac ;
+
+CTLSPEC !EF (!((C1 = 0) | (C2 = 0) | (C3 = 0) | (C1 = 3 & C2 = 0) | (C2 = 1 & C3 = 0) | (C3 = 1 & C4 = 0) | (C3 = 2 & C4 = 0) | (C4 = 2 & C1 = 0) | (C4 = 1) | (C1 = 2) | (C2 = 3)));

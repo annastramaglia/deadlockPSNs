@@ -1,0 +1,34 @@
+const one;
+const two;
+const three;
+enum pkt{one;two;three;};
+enum pkt1{two;three;};
+enum pkt2{one;three;};
+enum pkt3{one;two;};
+
+pred up1 (x: pkt){
+x == one;
+};
+
+pred up2 (x: pkt){
+x == two;
+};
+
+pred up3 (x: pkt){
+x == three;
+};
+
+chan q_1 := Queue(1,Merge(Source(pkt1),s_1));
+
+chan sink_2,s_2 := Switch(q_1,up2,otherwise);
+Sink(sink_2);
+chan q_2 := Queue(1,Merge(Source(pkt2),s_2));
+
+chan sink_3,s_3 := Switch(q_2,up3,otherwise);
+Sink(sink_3);
+chan q_3 := Queue(1,Merge(Source(pkt3),s_3));
+
+chan q_4 := Queue(1,q_3);
+
+chan sink_1,s_1 := Switch(q_4,up1,otherwise);
+Sink(sink_1);

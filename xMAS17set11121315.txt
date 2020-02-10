@@ -1,0 +1,49 @@
+const eleven;
+const twelve;
+const thirteen;
+const fifteen;
+enum pkt{eleven;twelve;thirteen;fifteen;};
+enum pkt11{twelve;thirteen;fifteen;};
+enum pkt12{eleven;thirteen;fifteen;};
+enum pkt13{eleven;twelve;fifteen;};
+enum pkt15{eleven;twelve;thirteen;};
+
+pred up11 (x: pkt){
+x == eleven;
+};
+pred up12 (x: pkt){
+x == twelve;
+};
+pred up13 (x: pkt){
+x == thirteen;
+};
+pred up15 (x: pkt){
+x == fifteen;
+};
+
+
+chan sink_12,s_12 := Switch(q_11_1,up12,otherwise);
+Sink(sink_12);
+chan m_12 := Merge(s_12,Source(pkt12));
+chan q_12 := Queue(1,m_12);
+
+chan sink_13,s_13 := Switch(q_12,up13,otherwise);
+Sink(sink_13);
+chan m_13 := Merge(s_13,Source(pkt13));
+chan q_13 := Queue(1,m_13);
+
+chan q_14 := Queue(1,q_13);
+
+chan sink_15,s_15 := Switch(q_14,up15,otherwise);
+Sink(sink_15);
+chan m_15 := Merge(s_15,Source(pkt15));
+chan q_15 := Queue(1,m_15);
+
+chan q_17_1 := Queue(1,q_15);
+
+chan sink_11,s_11 := Switch(q_17_1,up11,otherwise);
+Sink(sink_11);
+chan m_11 := Merge(s_11,Source(pkt11));
+chan sw_11_2,sw_11_1 := Switch(m_11,up15,otherwise);
+Sink(sw_11_2);
+chan q_11_1 := Queue(1,sw_11_1);

@@ -1,0 +1,43 @@
+const two;
+const four;
+const six;
+enum pkt{two;four;six;};
+enum pkt2{four;six;};
+enum pkt4{two;six;};
+enum pkt6{two;four;};
+
+pred up2 (x: pkt){
+x == two;
+};
+pred up4 (x: pkt){
+x == four;
+};
+pred up6 (x: pkt){
+x == six;
+};
+
+
+chan q_16 := Queue(1,q_15);
+Sink(q_16);
+chan q_2 := Queue(1,Source(pkt2));
+
+chan m_3 := Merge(q_2,q_17_1);
+chan q_3 := Queue(1,m_3);
+
+chan sink_4,s_4 := Switch(q_3,up4,otherwise);
+Sink(sink_4);
+chan m_4 := Merge(Source(pkt4),s_4);
+chan q_4 := Queue(1,m_4);
+
+chan sink_6,s_6 := Switch(q_4,up6,otherwise);
+Sink(sink_6);
+chan m_6 := Merge(Source(pkt6),s_6);
+chan q_6 := Queue(1,m_6);
+
+chan q_7 := Queue(1,q_6);
+
+chan s_17_4,s_17_1 := Switch(q_7,up2,otherwise);
+chan q_17_1 := Queue(1,s_17_1);
+chan q_17_4 := Queue(1,s_17_4);
+
+chan q_15 := Queue(1,q_17_4);
