@@ -18,12 +18,15 @@ if the .java produces a code to be run in nuXmv or NuSmv, or a different filenam
 
 # nuXmv-NuSmv 
 http://nusmv.fbk.eu/
+
 filename1.java produces filename1.txt
 
 # z3 
 https://github.com/Z3Prover/z3
+
 filename2.java produces filename2.smt
 
 # xMAS, MaDL language 
 https://github.com/MaDL-DVT/madl-dvt
+
 file names: tool+numberOfNodes+(set||numberOfMainNodes)
