@@ -8,9 +8,13 @@ of nodes and a number of channels. The main nodes are the only ones that can sen
 file names: tool+numberOfNodes+(typeOfDeadlock||typeOfTechnique)
 
 GD: Global deadlock-SMC-nuXmv NuSmv
+
 LD: Local deadlock-SMC-nuXmv NuSmv
+
 WD: Weak deadlock-SMC-nuXmv NuSmv
+
 LTL: BMC-nuXmv NuSmv
+
 BMC: BMC-z3
 
 The set of main nodes can be changed from the .java files, changing the "public int[] M ={...}", producing then a different filename.txt
